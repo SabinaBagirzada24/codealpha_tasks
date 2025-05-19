@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="films.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="513"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="films" custom_title="0" dock_id="1" table="4,5:mainfilms"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011300ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="TASK 2(EDA)">--How many rows are there in the table?
+SELECT COUNT(*) FROM films;
+
+--Film count by year
+SELECT Year, COUNT(*) AS film_count
+FROM films
+GROUP BY Year
+ORDER BY Year;
+
+--Top 10 highest-grossing films
+SELECT Film, Gross
+FROM films
+ORDER BY Gross DESC
+LIMIT 10;
+
+--The year with the highest total film gross
+SELECT Year, SUM(Gross) AS total_gross
+FROM films
+GROUP BY Year
+ORDER BY total_gross DESC
+LIMIT 1;
+
+--Highest-grossing film 
+SELECT Year, Film, MAX(Gross) AS Max_Gross
+FROM films
+GROUP BY Year;
+
+--Average gross by year
+SELECT Year, ROUND(AVG(Gross), 2) AS avg_gross
+FROM films
+GROUP BY Year
+ORDER BY Year;
+
+--Lowest-grossing film
+SELECT Film, Year, Gross
+FROM films
+ORDER BY Gross ASC
+LIMIT 1;
+
+--Highest-grossing film
+SELECT Film, Year, Gross
+FROM films
+ORDER BY Gross DESC
+LIMIT 1;
+
+--Highest-grossing film for each year
+SELECT Year, Film, Gross
+FROM films f1
+WHERE Gross = (
+    SELECT MAX(Gross)
+    FROM films f2
+    WHERE f2.Year = f1.Year
+)
+ORDER BY Year;
+
+--Films with above-average gross
+SELECT Film, Year, Gross
+FROM films
+WHERE Gross &gt; (SELECT AVG(Gross) FROM films)
+ORDER BY Gross DESC;
+
+--Top 10 films by gross
+SELECT Film, Year, Gross
+FROM films
+ORDER BY Gross DESC
+LIMIT 10;
+
+--Films with 'Star', 'Avengers', or 'Batman' in the title and their gross
+SELECT Film, Gross
+FROM films
+WHERE Film LIKE '%Star%'
+   OR Film LIKE '%Avengers%'
+   OR Film LIKE '%Batman%'
+ORDER BY Gross DESC;
+
+--Average, maximum, and minimum gross of films
+SELECT 
+    ROUND(AVG(Gross), 2) AS avg_gross,
+    MAX(Gross) AS max_gross,
+    MIN(Gross) AS min_gross
+FROM films;
+
+--Top 10 lowest-grossing films
+SELECT Film, Gross
+FROM films
+ORDER BY Gross ASC
+LIMIT 10;
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
