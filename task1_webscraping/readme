@@ -1,0 +1,5 @@
+# Task 1: Web Scraping
+
+- Description: Scraped data from a website using Python's BeautifulSoup and Requests.
+- Files: task1_webscraping.ipynb, data.csv
+- Summary: Collected, cleaned and saved data in CSV format for analysis.
