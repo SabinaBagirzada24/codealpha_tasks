@@ -1,0 +1,5 @@
+# Task 2: Exploratory Data Analysis (EDA)
+
+- Description: Loaded CSV data into SQLite database and performed SQL queries for data analysis.
+- Files: films(task 2).sqbpro, films(task2).db
+- Summary: Analyzed dataset to find trends and insights using SQL.
